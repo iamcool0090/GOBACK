@@ -1,0 +1,7 @@
+package vedalan
+
+
+func InitConnection() {
+	
+	
+}
