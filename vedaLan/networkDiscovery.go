@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
-	"strings"
+	"time"
 
 	"github.com/schollz/peerdiscovery"
 )
@@ -16,11 +17,23 @@ type DiscoveryJSON struct {
 }
 
 func generateRandomUsername() string {
-	// Generate two random words
-	words := []string{"momentary", "culture"} // Add more words if desired
-	username := strings.Join(words, " ")
+	words := []string{"momentary", "culture", "random", "example", "words", "go"}
+
+	// Generate two random indices
+	rand.Seed(time.Now().UnixNano())
+	index1 := rand.Intn(len(words))
+	index2 := rand.Intn(len(words))
+
+	// Retrieve the random words
+	word1 := words[index1]
+	word2 := words[index2]
+
+	// Join the words to form the username
+	username := word1 	+ word2
+
 	return username
 }
+
 
 func GetPeersJson(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Started Network Discovery")
