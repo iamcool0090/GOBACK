@@ -28,6 +28,7 @@ type Usage struct {
 func main() {
 
 	fmt.Println("test")
+	fileServer := http.FileServer(http.Dir("datafiles"))
 
 	http.HandleFunc("/quote", handlers.HandleQuoteRequest)
 	http.HandleFunc("/readusage", handlers.ReadUsageHandler)
@@ -37,6 +38,11 @@ func main() {
 	http.HandleFunc("/logout", handlers.AddLogoutTimeHandler)
 	http.HandleFunc("/login", handlers.AddLoginTimeHandler)
 	http.HandleFunc("/getothers", vedalan.GetPeersJson)
+	http.HandleFunc("/paths", handlers.PathsHandler)
+
+	http.Handle("/datafiles/", fileServer)
+
+
 
 
 
